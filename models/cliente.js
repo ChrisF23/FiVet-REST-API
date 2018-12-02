@@ -1,11 +1,35 @@
 'use strict';
+var utils = require('../utils');
+
 module.exports = (sequelize, DataTypes) => {
   const Cliente = sequelize.define('Cliente', {
-    nombre: DataTypes.STRING,
+    nombre: {
+        type : DataTypes.STRING,
+        allowNull: false, 
+        validate : {
+            notEmpty: true
+        }
+    },
     apellido_paterno: DataTypes.STRING,
     apellido_materno: DataTypes.STRING,
-    rut: DataTypes.STRING,
-    email: DataTypes.STRING,
+    rut: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate : {
+          notEmpty: true,
+          esValido() {
+              if (!utils.checkRut(this.rut)) {
+                throw new Error('rut Invalido')
+              }
+          }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
+    },
     telefono: DataTypes.STRING,
     direccion: DataTypes.STRING
   }, {

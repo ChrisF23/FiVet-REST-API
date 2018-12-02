@@ -69,13 +69,18 @@ router.get('/search', (req, res) => {
  */
 router.post('/', (req, res) => {
     return Cliente.findOrCreate({where: req.body})
-    .spread((cliente, created) => {
-    console.log(cliente.get({
-      plain: true
-    }))
-    console.log(created);
-    res.send(cliente.get({plain: true}))
-    })
+        .spread((cliente, created) => {
+            console.log(cliente.get({
+                plain: true
+            }))
+            console.log(created);
+            res.send(cliente.get({plain: true}));   
+        }, 
+        function(err) {
+            res.status(400);
+            res.send(err);
+            return;
+        })
 })
 
 
