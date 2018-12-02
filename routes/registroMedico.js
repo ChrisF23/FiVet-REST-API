@@ -3,26 +3,26 @@ var router = express.Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-// Obtener modelo Cliente.
-const Cliente = require('../models/index').Cliente;
+// Obtener modelo RegistroMedico.
+const RegistroMedico = require('../models/index').RegistroMedico;
 
 /**
- * Muestra una lista con todos los clientes.
+ * Muestra una lista con todos los registroMedicos.
  */
 router.get('/', (req, res, next) => {
-    return Cliente.findAll()
-        .then((clientes) => {
-            res.send(clientes);
-            console.log(JSON.stringify(clientes));
+    return RegistroMedico.findAll()
+        .then((registroMedicos) => {
+            res.send(registroMedicos);
+            console.log(JSON.stringify(registroMedicos));
         })
         .catch((err) => {
-            console.log('Ocurrio un error al obtener los clientes...', JSON.stringify(err))
+            console.log('Ocurrio un error al obtener los registroMedicos...', JSON.stringify(err))
             return res.send(err)
         });
 });
 
 /**
- * Realiza una consulta a la tabla Cliente y retorna los resultados.
+ * Realiza una consulta a la tabla RegistroMedico y retorna los resultados.
  */
 router.get('/search', (req, res) => {
     // Obtener la consulta. 
@@ -32,7 +32,7 @@ router.get('/search', (req, res) => {
     console.log("RAW: " +query);
     console.log("likeQuery: " +likeQuery);
 
-    return Cliente.findAll(
+    return RegistroMedico.findAll(
         {
             
             where:
@@ -49,14 +49,14 @@ router.get('/search', (req, res) => {
                 ]
             }
         })
-        .then((clientes) => {
-            if (clientes.length === 0) {
+        .then((registroMedicos) => {
+            if (registroMedicos.length === 0) {
                 var caseEmpty = 'No se encontraron resultados que coincidan con su busqueda.';
                 console.log(caseEmpty)
                 return res.send(caseEmpty);
             }
-            res.send(clientes);
-            console.log(JSON.stringify(clientes));
+            res.send(registroMedicos);
+            console.log(JSON.stringify(registroMedicos));
         })
         .catch((err) => {
             console.log('Ocurrio un error al obtener los resultados...', JSON.stringify(err))
@@ -65,20 +65,20 @@ router.get('/search', (req, res) => {
 });
 
 /**
- * Crea un Cliente
+ * Crea un RegistroMedico
  */
 router.post('/', (req, res) => {
-    return Cliente.findOrCreate({where: req.body})
-        .spread((cliente, created) => {
-            console.log(cliente.get({
+    return RegistroMedico.findOrCreate({where: req.body})
+        .spread((registroMedico, created) => {
+            console.log(registroMedico.get({
                 plain: true
             }))
             console.log("mira abajo");
             if (!created) {
-                res.send("Cliente ya existe");
+                res.send("RegistroMedico ya existe");
                 return;
             }
-            res.send(cliente.get({plain: true}));   
+            res.send(registroMedico.get({plain: true}));   
             return;
         }, 
         function(err) {
