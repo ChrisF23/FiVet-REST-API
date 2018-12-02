@@ -3,26 +3,26 @@ var router = express.Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
-// Obtener modelo Paciente.
-const Paciente = require('../models/index').Paciente;
+// Obtener modelo Cliente.
+const Cliente = require('../models/index').Cliente;
 
 /**
- * Muestra una lista con todos los pacientes.
+ * Muestra una lista con todos los clientes.
  */
 router.get('/', (req, res, next) => {
-    return Paciente.findAll()
-        .then((pacientes) => {
-            res.send(pacientes);
-            console.log(JSON.stringify(pacientes));
+    return Cliente.findAll()
+        .then((clientes) => {
+            res.send(clientes);
+            console.log(JSON.stringify(clientes));
         })
         .catch((err) => {
-            console.log('Ocurrio un error al obtener los pacientes...', JSON.stringify(err))
+            console.log('Ocurrio un error al obtener los clientes...', JSON.stringify(err))
             return res.send(err)
         });
 });
 
 /**
- * Realiza una consulta a la tabla Paciente y retorna los resultados.
+ * Realiza una consulta a la tabla Cliente y retorna los resultados.
  */
 router.get('/search', (req, res) => {
     // Obtener la consulta. 
@@ -32,7 +32,7 @@ router.get('/search', (req, res) => {
     console.log("RAW: " +query);
     console.log("likeQuery: " +likeQuery);
 
-    return Paciente.findAll(
+    return Cliente.findAll(
         {
             
             where:
@@ -40,23 +40,23 @@ router.get('/search', (req, res) => {
                 [Op.or]:
                 [
                     { nombre: {[Op.like]: likeQuery} },                  
-                    { numero_chip: {[Op.like]: likeQuery} },
-                    { especie: {[Op.like]: likeQuery} },
-                    { edad_anios: {[Op.like]: likeQuery} },
-                    { edad_meses: {[Op.like]: likeQuery} },
-                    { raza: {[Op.like]: likeQuery} },
-                    { color: {[Op.like]: likeQuery} }
+                    { apellido_paterno: {[Op.like]: likeQuery} },
+                    { apellido_materno: {[Op.like]: likeQuery} },
+                    { rut: {[Op.like]: likeQuery} },
+                    { email: {[Op.like]: likeQuery} },
+                    { telefono: {[Op.like]: likeQuery} },
+                    { direccion: {[Op.like]: likeQuery} }
                 ]
             }
         })
-        .then((pacientes) => {
-            if (pacientes.length === 0) {
+        .then((clientes) => {
+            if (clientes.length === 0) {
                 var caseEmpty = 'No se encontraron resultados que coincidan con su busqueda.';
                 console.log(caseEmpty)
                 return res.send(caseEmpty);
             }
-            res.send(pacientes);
-            console.log(JSON.stringify(pacientes));
+            res.send(clientes);
+            console.log(JSON.stringify(clientes));
         })
         .catch((err) => {
             console.log('Ocurrio un error al obtener los resultados...', JSON.stringify(err))
@@ -65,16 +65,16 @@ router.get('/search', (req, res) => {
 });
 
 /**
- * Crea un Paciente
+ * Crea un Cliente
  */
 router.post('/', (req, res) => {
-    return Paciente.findOrCreate({where: req.body})
-    .spread((paciente, created) => {
-    console.log(paciente.get({
+    return Cliente.findOrCreate({where: req.body})
+    .spread((cliente, created) => {
+    console.log(cliente.get({
       plain: true
     }))
     console.log(created);
-    res.send(paciente.get({plain: true}))
+    res.send(cliente.get({plain: true}))
     })
 })
 
