@@ -88,6 +88,22 @@ router.post('/', (req, res) => {
         })
 })
 
+router.put('/', (req, res) => {
+    return RegistroMedico.findAll({ where: { id: req.body.id } })
+    .spread(function (registroMedico) {
+        // Check if record exists in db
+        if (registroMedico) {
+            registroMedico.update(req.body);
+            //.success(function () {res.send(registroMedico.get({plain: true}));})
+            res.send(registroMedico.get({plain: true}));
+        }
+    }, function(err) {
+        res.status(400);
+        res.send(err);
+        return;
+    })
+})
+
 
 // Exportar el router.
 module.exports = router;

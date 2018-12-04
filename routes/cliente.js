@@ -88,6 +88,33 @@ router.post('/', (req, res) => {
         })
 })
 
+// router.put('/', (req, res, next) => {
+//     return Cliente.findById (req.body.id)
+//         .then((clientes) => {
+//             clientes.update(req.body)
+//             res.send(clientes);
+//             console.log(JSON.stringify(clientes));
+//         })
+//         .catch((err) => {
+//             console.log('Ocurrio un error al obtener los clientes...', JSON.stringify(err))
+//             return res.send(err)
+//         });
+// });
 
+router.put('/', (req, res) => {
+    return Cliente.findAll({ where: { id: req.body.id } })
+    .spread(function (cliente) {
+        // Check if record exists in db
+        if (cliente) {
+            cliente.update(req.body);
+            //.success(function () {res.send(cliente.get({plain: true}));})
+            res.send(cliente.get({plain: true}));
+        }
+    }, function(err) {
+        res.status(400);
+        res.send(err);
+        return;
+    })
+})
 // Exportar el router.
 module.exports = router;
