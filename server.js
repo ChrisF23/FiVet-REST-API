@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Especificar Rutas:
-app.use('/', indexRouter);
+app.use('/api/', indexRouter);
 app.use('/api/pacientes', pacienteRouter);
 app.use('/api/clientes', clientesRouter);
 app.use('/api/registroMedico', registroMedicoRouter);

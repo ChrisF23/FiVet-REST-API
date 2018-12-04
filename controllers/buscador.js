@@ -1,15 +1,11 @@
-var express = require('express');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-
 const Models = require('../models/index');
-
 
 module.exports = {
 
-    buscarPacientes: function (req, res, willSend) {
-        // Obtener la consulta. 
-        var query = req.body.query;
+    buscarPacientes: function (query) {
+        // Obtener la consulta.
         var likeQuery = "%" + query + "%";
 
         console.log("RAW: " + query);
@@ -17,7 +13,6 @@ module.exports = {
 
         return Models.Paciente.findAll(
             {
-
                 where:
                 {
                     [Op.or]:
@@ -36,20 +31,21 @@ module.exports = {
                 if (pacientes.length === 0) {
                     var caseEmpty = 'No se encontraron resultados que coincidan con su busqueda.';
                     console.log(caseEmpty)
-                    return res.send(caseEmpty);
+                    //return res.send(caseEmpty);
+                    return 'No se encontraron resultados que coincidan con su busqueda.';
                 }
-                res.send(pacientes);
+                //res.send(pacientes);
                 console.log(JSON.stringify(pacientes));
+                return JSON.stringify(pacientes);
             })
             .catch((err) => {
                 console.log('Ocurrio un error al obtener los resultados...', JSON.stringify(err))
-                return res.send(err)
+                //return res.send(err)
+                return JSON.stringify(err);
             });
     },
 
-    buscarClientes: function (req, res) {
-        // Obtener la consulta. 
-        var query = req.body.query;
+    buscarClientes: function (query) {
         var likeQuery = "%" + query + "%";
 
         console.log("RAW: " + query);
@@ -74,23 +70,19 @@ module.exports = {
             })
             .then((cliente) => {
                 if (cliente.length === 0) {
-                    var caseEmpty = 'No se encontraron resultados que coincidan con su busqueda.';
-                    console.log(caseEmpty)
-                    return res.send(caseEmpty);
+                    return 'No se encontraron resultados que coincidan con su busqueda.';
                 }
-                res.send(cliente);
                 console.log(JSON.stringify(cliente));
+                return JSON.stringify(cliente);
             })
             .catch((err) => {
                 console.log('Ocurrio un error al obtener los resultados...', JSON.stringify(err))
-                return res.send(err)
+                return JSON.stringify(err);
             });
 
 
     },
-    buscarRegistrosMedicos: function (req, res) {
-        // Obtener la consulta. 
-        var query = req.body.query;
+    buscarRegistrosMedicos: function (query) {
         var likeQuery = "%" + query + "%";
 
         console.log("RAW: " + query);
@@ -102,16 +94,12 @@ module.exports = {
             })
             .then((registroMedicos) => {
                 if (registroMedicos.length === 0) {
-                    var caseEmpty = 'No se encontraron resultados que coincidan con su busqueda.';
-                    console.log(caseEmpty)
-                    return res.send(caseEmpty);
+                    return 'No se encontraron resultados que coincidan con su busqueda.'
                 }
-                res.send(registroMedicos);
-                console.log(JSON.stringify(registroMedicos));
+                return JSON.stringify(registroMedicos);
             })
             .catch((err) => {
-                console.log('Ocurrio un error al obtener los resultados...', JSON.stringify(err))
-                return res.send(err)
+                return JSON.stringify(err);
             });
     }
 }

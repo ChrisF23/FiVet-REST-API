@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const Controlador = require('../controllers/controlador');
 
 // Esto es solo por el momento:
 var indexView = 
@@ -17,8 +18,8 @@ var indexView =
 /**
  * Mostrar la pagina principal.
  */
-router.get('/', function(req, res, next) {
-  res.send(indexView);
-}); 
+router.get('/', (req, res) => res.send(indexView)); 
+
+router.get('/search', (req, res) => Controlador.metabusqueda(req, res));
 
 module.exports = router;
