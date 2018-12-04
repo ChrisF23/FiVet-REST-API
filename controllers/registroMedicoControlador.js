@@ -96,6 +96,18 @@ module.exports = {
             res.send(err);
             return;
         })
+    },
+
+    getById: function(req, res) {
+        return Paciente.findById(req.params.id)
+        .then((pacientes) => {
+            res.send(pacientes);
+            console.log(JSON.stringify(paciente));
+        })
+        .catch((err) => {
+            console.log('Ocurrio un error al obtener al paciente...', JSON.stringify(err))
+            return res.send(err)
+        });
     }
 }
 
