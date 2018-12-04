@@ -13,13 +13,13 @@ const RegistroMedico = require('../models/index').RegistroMedico;
  */
 router.get('/', (req, res) => controlador.listar(req, res, RegistroMedico));
 
-router.get('/:id', (req, res) => controlador.getById(req, res, RegistroMedico));
-
 
 /**
  * Realiza una consulta a la tabla RegistroMedico y retorna los resultados.
  */
 router.get('/search', (req, res) => metabuscador.metabuscadorRegistroMedico(req, res, true));
+
+router.get('/:id', (req, res) => controlador.getById(req, res, RegistroMedico));
 
 /**
  * Crea un RegistroMedico

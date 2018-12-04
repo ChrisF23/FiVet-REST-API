@@ -13,13 +13,15 @@ const Paciente = require('../models/index').Paciente;
  */
 router.get('/', (req, res) => controlador.listar(req, res, Paciente));
 
-router.get('/:id', (req, res) => controlador.getById(req, res, Paciente));
-
-
 /**
  * Realiza una consulta a la tabla Paciente y retorna los resultados.
  */
 router.get('/search', (req, res) => metabuscador.metabuscadorPaciente(req, res));
+
+
+router.get('/:id', (req, res) => controlador.getById(req, res, Paciente));
+
+
 
 /**
  * Crea un Paciente
