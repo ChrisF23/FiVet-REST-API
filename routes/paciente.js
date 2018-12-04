@@ -3,7 +3,7 @@ var router = express.Router();
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 controlador = require('../controllers/controlador');
-metabuscador = require('../controllers/metabuscador');
+const buscador = require('../controllers/buscador');
 
 // Obtener modelo Paciente.
 const Paciente = require('../models/index').Paciente;
@@ -16,7 +16,7 @@ router.get('/', (req, res) => controlador.listar(req, res, Paciente));
 /**
  * Realiza una consulta a la tabla Paciente y retorna los resultados.
  */
-router.get('/search', (req, res) => metabuscador.metabuscadorPaciente(req, res));
+router.get('/search', (req, res) => buscador.buscarPacientes(req, res));
 
 
 router.get('/:id', (req, res) => controlador.getById(req, res, Paciente));
