@@ -21,6 +21,18 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    return Paciente.findById(req.params.id)
+        .then((pacientes) => {
+            res.send(pacientes);
+            console.log(JSON.stringify(paciente));
+        })
+        .catch((err) => {
+            console.log('Ocurrio un error al obtener al paciente...', JSON.stringify(err))
+            return res.send(err)
+        });
+});
+
 /**
  * Realiza una consulta a la tabla Paciente y retorna los resultados.
  */
@@ -75,6 +87,22 @@ router.post('/', (req, res) => {
     }))
     console.log(created);
     res.send(paciente.get({plain: true}))
+    })
+})
+
+router.put('/', (req, res) => {
+    return Paciente.findAll({ where: { id: req.body.id } })
+    .spread(function (paciente) {
+        // Check if record exists in db
+        if (paciente) {
+            paciente.update(req.body);
+            //.success(function () {res.send(paciente.get({plain: true}));})
+            res.send(paciente.get({plain: true}));
+        }
+    }, function(err) {
+        res.status(400);
+        res.send(err);
+        return;
     })
 })
 

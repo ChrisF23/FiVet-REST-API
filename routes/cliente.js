@@ -21,6 +21,19 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    return Cliente.findById(req.params.id)
+        .then((clientes) => {
+            res.send(clientes);
+            console.log(JSON.stringify(clientes));
+        })
+        .catch((err) => {
+            console.log('Ocurrio un error al obtener los clientes...', JSON.stringify(err))
+            return res.send(err)
+        });
+});
+
+
 /**
  * Realiza una consulta a la tabla Cliente y retorna los resultados.
  */
