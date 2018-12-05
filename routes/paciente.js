@@ -15,7 +15,7 @@ router.get('/', (req, res) => Controlador.listar(req, res, Paciente));
 /**
  * Realiza una consulta a la tabla Paciente y retorna los resultados.
  */
-router.get('/search', (req, res) => Controlador.buscarPacientes(req, res));
+router.get('/search', (req, res) => Controlador.buscarPacientes(req, res, Paciente));
 
 
 router.get('/:id', (req, res) => Controlador.getById(req, res, Paciente));

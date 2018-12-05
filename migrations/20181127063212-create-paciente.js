@@ -29,6 +29,15 @@ module.exports = {
       color: {
         type: Sequelize.STRING
       },
+      castrado: {
+        type: Sequelize.STRING
+      },
+      chip: {
+        type: Sequelize.STRING
+      },
+      ultimaVisita: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

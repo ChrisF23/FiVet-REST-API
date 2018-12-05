@@ -14,7 +14,7 @@ module.exports = {
             });
     },
 
-    crear: function (req, res) {
+    crear: function (req, res, Modelo) {
         return Modelo.findOrCreate({ where: req.body })
             .spread((modelo, created) => {
                 console.log(modelo.get({
