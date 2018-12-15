@@ -26,6 +26,9 @@ router.get('/:id', (req, res) => controlador.getById(req, res, RegistroMedico));
  */
 router.post('/', (req, res) => controlador.crear(req, res, RegistroMedico));
 
+//Elimina un RegistroMedico
+router.delete('/:id', (req, res) => controlador.eliminar(req, res, RegistroMedico));
+
 
 router.put('/', (req, res) => controlador.actualizar(req, res, RegistroMedico))
 // Exportar el router.

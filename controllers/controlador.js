@@ -51,6 +51,18 @@ module.exports = {
             })
     },
 
+    eliminar: function(req, res, Modelo) {
+        return Modelo.destroy({
+            where: {
+                id: req.param('id')
+            }
+        }, function (err) {
+            res.status(400);
+            res.send(err);
+            return;
+        });
+    },
+
     getById: function (req, res, Modelo) {
         return Modelo.findById(req.params.id)
             .then((modelos) => {
