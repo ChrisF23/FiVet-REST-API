@@ -35,7 +35,7 @@ module.exports = {
       chip: {
         type: Sequelize.STRING
       },
-      ultimaVisita: {
+      ultima_visita: {
         type: Sequelize.STRING
       },
       createdAt: {

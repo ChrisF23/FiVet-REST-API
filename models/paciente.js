@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     color: DataTypes.STRING,
     castrado: DataTypes.STRING,
     chip: DataTypes.STRING,
-    ultimaVisita: DataTypes.DATE
+    ultima_visita: DataTypes.DATE
 
   }, {
     //Evitar que sequelize modifique el nombre de la tabla.

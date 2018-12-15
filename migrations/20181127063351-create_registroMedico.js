@@ -8,11 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-        pacienteId: {
+        paciente_id: {
           type : Sequelize.STRING,
           allowNull: false
       },
-      clienteId: {
+      cliente_id: {
           type: Sequelize.STRING,
           allowNull: false
       },
@@ -25,15 +25,16 @@ module.exports = {
       temperatura: Sequelize.FLOAT,
       hidratacion: Sequelize.FLOAT,
       pulso: Sequelize.FLOAT,
-      frecuenciaCardiaca: Sequelize.FLOAT,
-      frecuenciaRespiratoria: Sequelize.FLOAT,
+      frecuencia_cardiaca: Sequelize.FLOAT,
+      frecuencia_respiratoria: Sequelize.FLOAT,
       mucosas: Sequelize.FLOAT,
-      tiempoDeLlenadoCapilar: Sequelize.FLOAT,
+      tiempo_de_llenado_capilar: Sequelize.FLOAT,
       ganglios: Sequelize.STRING,
-      reflejoTusigeno: Sequelize.STRING,
-      reflejoDeglutorio: Sequelize.STRING,
-      palpitaciónAbdominal: Sequelize.STRING,
-      palmopercusion: Sequelize.STRING, condicionCorporal: Sequelize.STRING,
+      reflejo_tusigeno: Sequelize.STRING,
+      reflejo_deglutorio: Sequelize.STRING,
+      palpitacion_abdominal: Sequelize.STRING,
+      palmopercusion: Sequelize.STRING,
+      condicion_corporal: Sequelize.STRING,
       tonsillas: Sequelize.STRING,
       conciencia: Sequelize.STRING,
       createdAt: {
