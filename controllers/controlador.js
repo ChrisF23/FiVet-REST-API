@@ -103,12 +103,12 @@ module.exports = {
 
         return Modelo.findById(req.params.id)
             .then((modelos) => {
-                console.log(JSON.stringify(modelo));
+                console.log(JSON.stringify(modelos));
                 return res.send(modelos);
             })
             .catch((err) => {
-                console.log('Ocurrio un error al obtener al modelo...', JSON.stringify(err))
-                return res.send(err)
+                console.log('Ocurrio un error al obtener al modelo...', (err))
+                return res.send(JSON.stringify(err));
             });
     },
 
