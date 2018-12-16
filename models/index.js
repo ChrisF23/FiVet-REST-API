@@ -10,10 +10,10 @@ const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
-  console.log("hola1");
+  console.log("(Usando Configuracion 1)");
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  console.log("hola2");
+  console.log("(Usando Configuracion 2)");
   // sequelize = new Sequelize('fivetdb', 'denis', null, {
   //   dialect: 'postgres',
   // });
