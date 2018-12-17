@@ -38,7 +38,7 @@ app.use(function (req, res, next) {
 app.use('/api/', indexRouter);
 app.use('/api/pacientes', pacienteRouter);
 app.use('/api/clientes', clientesRouter);
-app.use('/api/registro_medico', registroMedicoRouter);
+app.use('/api/registros', registroMedicoRouter);
 
 // Escuchar...
 app.listen(3000, () => {  
