@@ -27,6 +27,9 @@ router.get('/:id', (req, res) => controlador.getById(req, res, Cliente));
  */
 router.post('/', (req, res) => controlador.crear(req, res, Cliente));
 
+//Elimina un Cliente
+router.delete('/:id', (req, res) => controlador.eliminar(req, res, Cliente));
+
 
 router.put('/', (req, res) => controlador.actualizar(req, res, Cliente))
 // Exportar el router.

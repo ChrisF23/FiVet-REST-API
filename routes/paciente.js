@@ -27,6 +27,9 @@ router.get('/:id', (req, res) => Controlador.getById(req, res, Paciente));
  */
 router.post('/', (req, res) => Controlador.crear(req, res, Paciente));
 
+//Elimina un Paciente
+router.delete('/:id', (req, res) => controlador.eliminar(req, res, Paciente));
+
 
 router.put('/', (req, res) => Controlador.actualizar(req, res, Paciente))
 // Exportar el router.

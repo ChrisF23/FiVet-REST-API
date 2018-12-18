@@ -56,11 +56,10 @@ module.exports = {
             where: {
                 id: req.param('id')
             }
-        }, function (err) {
-            res.status(400);
-            res.send(err);
+        }).then(function () {
+            res.status(200);
             return;
-        });
+        })
     },
 
     getById: function (req, res, Modelo) {
