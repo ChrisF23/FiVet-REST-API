@@ -13,8 +13,11 @@ router.get('/search', (req, res) => controlador.buscarClientes(req, res));
 
 router.get('/:id', (req, res) => controlador.getById(req, res, Cliente));
 
+
 // Crea un Cliente.
-router.post('/', (req, res) => controlador.crear(req, res, Cliente));
+router.post('/', (req, res) => {req.body.rut = req.body.rut.replace(/\./g,'')
+                                                .replace(/-/g,'').toLowerCase();;
+                                controlador.crear(req, res, Cliente);});
 
 //Elimina un Cliente
 router.delete('/:id', (req, res) => controlador.eliminar(req, res, Cliente));
