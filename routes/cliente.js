@@ -16,14 +16,9 @@ router.get('/:id', (req, res) => controlador.getById(req, res, Cliente));
 // Crea un Cliente.
 router.post('/', (req, res) => controlador.crear(req, res, Cliente));
 
-<<<<<<< HEAD
 //Elimina un Cliente
 router.delete('/:id', (req, res) => controlador.eliminar(req, res, Cliente));
 
-=======
-// Elimina un Cliente.
-router.delete('/:id', (req, res) => controlador.eliminar(req, res, Cliente));
->>>>>>> e374101b427bb12bd05fd560d1c07b120badfe81
 
 // Actualiza un Cliente.
 router.put('/', (req, res) => controlador.actualizar(req, res, Cliente))

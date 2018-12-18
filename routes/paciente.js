@@ -23,13 +23,10 @@ router.delete('/:id', (req, res) => controlador.eliminar(req, res, Paciente));
 router.put('/', (req, res) => controlador.actualizar(req, res, Paciente))
 
 
-<<<<<<< HEAD
 //Elimina un Paciente
 router.delete('/:id', (req, res) => controlador.eliminar(req, res, Paciente));
 
 
 router.put('/', (req, res) => Controlador.actualizar(req, res, Paciente))
-=======
->>>>>>> e374101b427bb12bd05fd560d1c07b120badfe81
 // Exportar el router.
 module.exports = router;

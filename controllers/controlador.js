@@ -88,15 +88,11 @@ module.exports = {
         }).then(function () {
             res.status(200);
             return;
-<<<<<<< HEAD
-        })
-=======
         }).catch((err) => {
             console.log('Ocurrio un error: ', err.message)
             console.log("CATCH");
             return res.send(err);
         });
->>>>>>> e374101b427bb12bd05fd560d1c07b120badfe81
     },
 
     getById: function (req, res, Modelo) {
