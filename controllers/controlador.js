@@ -20,6 +20,15 @@ module.exports = {
             });
     },
 
+    contar: function(req, res, Modelo) {
+        return Modelo.count().then(c => {
+            console.log("Hay " + c + " Modelos");
+            res.status(200);
+            countJson = {"contar": c}
+            res.send(countJson);
+          })
+    },
+
     crear: function (req, res, Modelo) {
         console.log("---------------------------------");
         console.log("[CREAR]");
