@@ -85,8 +85,9 @@ module.exports = {
             where: {
                 id: req.param('id')
             }
-        }).then(function () {
+        }).then(function (u) {
             res.status(200);
+            res.send({msg: 'OK'});
             return;
         }).catch((err) => {
             console.log('Ocurrio un error: ', err.message)
