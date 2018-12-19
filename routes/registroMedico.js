@@ -12,6 +12,8 @@ router.get('/', (req, res) => controlador.listar(req, res, RegistroMedico));
 // Realiza una consulta a la tabla RegistroMedico y retorna los resultados.
 router.get('/search', (req, res) => buscador.buscarRegistrosMedicos(req, res));
 
+router.get('/contar', (req, res) => controlador.contar(req,res, RegistroMedico))
+
 router.get('/:id', (req, res) => controlador.getById(req, res, RegistroMedico));
 
 // Crea un Registro medico.

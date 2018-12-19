@@ -20,6 +20,15 @@ module.exports = {
             });
     },
 
+    contar: function(req, res, Modelo) {
+        return Modelo.count().then(c => {
+            console.log("Hay " + c + " Modelos");
+            res.status(200);
+            countJson = {"contar": c}
+            res.send(countJson);
+          })
+    },
+
     crear: function (req, res, Modelo) {
         console.log("---------------------------------");
         console.log("[CREAR]");
@@ -85,9 +94,9 @@ module.exports = {
             where: {
                 id: req.param('id')
             }
-        }, function (err) {
-            res.status(400);
-            res.send(err);
+        }).then(function (u) {
+            res.status(200);
+            res.send({msg: 'OK'});
             return;
         }).catch((err) => {
             console.log('Ocurrio un error: ', err.message)
